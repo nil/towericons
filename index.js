@@ -1,7 +1,5 @@
 const shell = require('shelljs');
 
-// shell.echo('')
-
 // Creates icons/ directory if it doesn't exist
 if (!shell.test('-e', 'icons/')) {
   shell.mkdir('icons')
@@ -21,6 +19,3 @@ shell.find('icon /*').forEach(function (file) {
 
 // Remove icon/ directory
 shell.rm('-r', 'icon /')
-
-// Reduce the size of all icons
-shell.exec('svgo --config=.svgo.yml -f icons');
