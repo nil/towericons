@@ -1,0 +1,15 @@
+{
+  "name": "nilicons",
+  "version": "0.1.0",
+  "description": "My personal icon set",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Nil Vila",
+  "license": "MIT",
+  "devDependencies": {
+    "shelljs": "^0.8.3",
+    "svgo": "^1.3.2"
+  }
+}
