@@ -36,7 +36,7 @@ plugins:
   - removeDesc
   - removeDimensions: true
   - removeAttrs:
-      attrs: '(stroke|fill|clip-rule|fill-rule)'
+      attrs: '(stroke|fill|clip-rule)'
   - removeAttributesBySelector
   - removeElementsByAttr
   - addClassesToSVGElement
