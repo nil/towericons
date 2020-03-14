@@ -4,8 +4,9 @@
   "description": "My personal icon set",
   "main": "index.js",
   "scripts": {
-    "icon": "node index.js && npm run svgo",
-    "svgo": "svgo --config=.svgo.yml -f icons"
+    "unzip": "unzip -o -d icons export.zip && rm export.zip",
+    "svgo": "svgo --config=.svgo.yml -f icons",
+    "icons": "npm run unzip && npm run svgo"
   },
   "author": "Nil Vila",
   "license": "MIT",
