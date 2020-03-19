@@ -4,10 +4,10 @@
   "description": "My personal icon set",
   "main": "index.js",
   "scripts": {
-    "build": "node script/build.js --input icons/**/*.svg --output lib/build/data.json",
+    "build:data": "node script/build.js --input icons/**/*.svg --output lib/build/data.json",
     "unzip": "unzip -o -d icons icons.zip && rm icons.zip",
     "svgo": "svgo --config=.svgo.yml -f icons -r",
-    "short": "rm -rf icons &&npm run unzip && npm run svgo && npm run build"
+    "short": "rm -rf icons &&npm run unzip && npm run svgo && npm run build:data"
   },
   "author": "Nil Vila",
   "license": "MIT",
