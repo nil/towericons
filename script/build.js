@@ -4,9 +4,9 @@ const fs = require('fs-extra')
 const path = require('path')
 const globby = require('globby')
 const cheerio = require('cheerio')
-const trimNewlines = require('trim-newlines')
 const yargs = require('yargs')
 const merge = require('lodash.merge')
+const camelcase = require('lodash.camelcase')
 
 // This script generates a JSON file that contains information about input SVG files.
 // Based on https://github.com/primer/octicons/blob/master/script/build.js
@@ -40,6 +40,7 @@ if (svgFilepaths.length === 0) {
 }
 
 let exitCode = 0
+let vueComponents;
 
 const icons = svgFilepaths.map(filepath => {
   try {
@@ -52,8 +53,8 @@ const icons = svgFilepaths.map(filepath => {
     const svg = fs.readFileSync(path.resolve(filepath), 'utf8')
     const svgElement = cheerio.load(svg)('svg')
     const svgViewBox = svgElement.attr('viewBox')
-    const svgPath = trimNewlines(svgElement.html()).trim();
 
+    console.log(svg);
     let name = filename.match(filenamePattern)[1];
 
     // Append category to the icon name if it is included in the exceptions list.
@@ -74,13 +75,13 @@ const icons = svgFilepaths.map(filepath => {
       )
     }
 
-    if (clipPathPattern.test(svgPath)) {
+    if (clipPathPattern.test(svg)) {
       throw new Error(`${filename}: Invalid clip-path tag.`)
     }
 
     return {
       name,
-      path: svgPath
+      path: svg
     }
   } catch (error) {
     console.error(error)
@@ -112,7 +113,17 @@ const iconsByName = icons.reduce(
 )
 
 if (argv.output) {
-  fs.outputJsonSync(path.resolve(argv.output), iconsByName)
+  fs.outputJsonSync(path.resolve(`${argv.output}/data.json`), iconsByName);
+
+  for (const key in iconsByName) {
+    const icon = iconsByName[key];
+    const lowercaseName = camelcase(icon.name)
+    const componentName = lowercaseName.charAt(0).toUpperCase() + lowercaseName.slice(1)
+    const fileContent = `export const ${componentName} = { render() { return ${icon.path} } };`;
+
+    fs.writeFileSync(path.resolve(`${argv.output}/${componentName}.js`), fileContent);
+  }
+
 } else {
   process.stdout.write(JSON.stringify(iconsByName))
 }
