@@ -6,7 +6,7 @@ const globby = require('globby')
 const cheerio = require('cheerio')
 const yargs = require('yargs')
 const merge = require('lodash.merge')
-const camelcase = require('lodash.camelcase')
+const camelcase = require('camelcase')
 
 // This script generates a JSON file that contains information about input SVG files.
 // Based on https://github.com/primer/octicons/blob/master/script/build.js
@@ -54,7 +54,6 @@ const icons = svgFilepaths.map(filepath => {
     const svgElement = cheerio.load(svg)('svg')
     const svgViewBox = svgElement.attr('viewBox')
 
-    console.log(svg);
     let name = filename.match(filenamePattern)[1];
 
     // Append category to the icon name if it is included in the exceptions list.
@@ -113,15 +112,16 @@ const iconsByName = icons.reduce(
 )
 
 if (argv.output) {
+  fs.writeFileSync(path.resolve(`./index.js`), '');
   fs.outputJsonSync(path.resolve(`${argv.output}/data.json`), iconsByName);
 
   for (const key in iconsByName) {
     const icon = iconsByName[key];
-    const lowercaseName = camelcase(icon.name)
-    const componentName = lowercaseName.charAt(0).toUpperCase() + lowercaseName.slice(1)
-    const fileContent = `export const ${componentName} = { render() { return ${icon.path} } };`;
+    const componentName = camelcase(icon.name, { pascalCase: true });
+    const fileContent = `const ${componentName} = {\n\trender() {\n\t\treturn ${icon.path}\n\t}\n};\n\nexport default ${componentName};`;
 
     fs.writeFileSync(path.resolve(`${argv.output}/${componentName}.js`), fileContent);
+    fs.appendFile(path.resolve(`./index.js`), `import ${componentName} from '../icons/${componentName}'\n`)
   }
 
 } else {
