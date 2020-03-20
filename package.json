@@ -6,7 +6,7 @@
   "scripts": {
     "unzip": "unzip -o -d icons icons.zip && rm icons.zip",
     "svgo": "svgo --config=.svgo.yml -f icons -r",
-    "icons": "npm run unzip && npm run svgo"
+    "icons": "rm -rf icons && npm run unzip && npm run svgo"
   },
   "author": "Nil Vila",
   "license": "MIT",
