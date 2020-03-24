@@ -13,6 +13,16 @@ const { join, resolve } = require('path')
 // (https://github.com/primer/octicons/blob/3ba887a80bb62a276813506ceeef48dd64a3d1c4/script/build.js)
 // and https://github.com/mxstbr/octicons/blob/separate-bundle-per-icon/lib/octicons_react/script/build.js
 
+const srcDir = resolve(__dirname, '../lib')
+const dataFile = join(srcDir, 'data.json');
+const newIconsFile = join(srcDir, 'icons.js')
+
+const GENERATED_HEADER = '/* THIS FILE IS GENERATED. DO NOT EDIT IT. */'
+
+function camelCase(str) {
+  return str.replace(/(^|-)([a-z]|\d)/g, (_, __, c) => c.toUpperCase())
+}
+
 const {argv} = yargs
   .usage('Usage: $0 --input <input filepaths> --output <output filepath>')
   .example('$0 --input icons/**/*.svg --output build/data.json')
@@ -126,16 +136,6 @@ if (argv.output) {
 
 } else {
   process.stdout.write(JSON.stringify(iconsByName))
-}
-
-const srcDir = resolve(__dirname, '../lib')
-const dataFile = join(srcDir, 'data.json');
-const newIconsFile = join(srcDir, 'icons.js')
-
-const GENERATED_HEADER = '/* THIS FILE IS GENERATED. DO NOT EDIT IT. */'
-
-function camelCase(str) {
-  return str.replace(/(^|-)([a-z]|\d)/g, (_, __, c) => c.toUpperCase())
 }
 
 const newIcons = Object.values(iconsByName);
