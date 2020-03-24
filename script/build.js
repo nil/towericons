@@ -112,18 +112,83 @@ const iconsByName = icons.reduce(
 )
 
 if (argv.output) {
-  fs.writeFileSync(path.resolve(`./index.js`), '');
   fs.outputJsonSync(path.resolve(`${argv.output}/data.json`), iconsByName);
+
+  let iconList = [];
 
   for (const key in iconsByName) {
     const icon = iconsByName[key];
     const componentName = camelcase(icon.name, { pascalCase: true });
     const fileContent = `const ${componentName} = {\n\trender() {\n\t\treturn ${icon.path}\n\t}\n};\n\nexport default ${componentName};`;
 
+    iconList.push(componentName);
     fs.writeFileSync(path.resolve(`${argv.output}/${componentName}.js`), fileContent);
-    fs.appendFile(path.resolve(`./index.js`), `import ${componentName} from '../icons/${componentName}'\n`)
   }
+
 
 } else {
   process.stdout.write(JSON.stringify(iconsByName))
 }
+
+// #!/usr/bin / env node
+const octnewIcons = require('../lib/data.json')
+const fse = require('fs-extra')
+const { join, resolve } = require('path')
+
+const srcDir = resolve(__dirname, '../lib')
+const newIconsFile = join(srcDir, 'icons.js')
+
+const GENERATED_HEADER = '/* THIS FILE IS GENERATED. DO NOT EDIT IT. */'
+
+function CamelCase(str) {
+  return str.replace(/(^|-)([a-z]|\d)/g, (_, __, c) => c.toUpperCase())
+}
+
+const octiconNames = [...Object.entries(octnewIcons)]
+
+const newIcons = octiconNames
+  .map(([key, octicon]) => {
+    const { width, height } = octicon
+    const name = CamelCase(key)
+    const type = `Icon<${width}, ${height}>`
+
+    return {
+      key,
+      name,
+      octicon,
+      type
+    }
+  })
+  .sort((a, b) => a.key.localeCompare(b.key))
+
+function writeIcons(file) {
+  const count = newIcons.length
+  const code = `${GENERATED_HEADER}
+${newIcons.map(({ name }) => `import ${name} from '../newIcons/${name}'`).join('\n')}
+
+const newIconsByName = {
+  ${newIcons.map(({ key, name }) => `'${key}': ${name}`).join(',\n  ')}
+}
+
+function getIconByName(name) {
+  return newIconsByName[name]
+}
+
+export {
+  getIconByName,
+  newIconsByName,
+  ${newIcons.map(({ name }) => name).join(',\n  ')}
+}`
+  return fse.writeFile(file, code, 'utf8').then(() => {
+    console.warn('wrote %s with %d exports', file, count)
+    return newIcons
+  })
+}
+
+fse
+  .mkdirs(srcDir)
+  .then(() => writeIcons(newIconsFile))
+  .catch(error => {
+    console.error(error)
+    process.exit(1)
+  })
