@@ -12,6 +12,7 @@ const { join, resolve } = require('path')
 // This script generates a JSON file that contains information about input SVG files.
 // Based on https://github.com/primer/octicons/blob/master/script/build.js
 // (https://github.com/primer/octicons/blob/3ba887a80bb62a276813506ceeef48dd64a3d1c4/script/build.js)
+// and https://github.com/mxstbr/octicons/blob/separate-bundle-per-icon/lib/octicons_react/script/build.js
 
 const {argv} = yargs
   .usage('Usage: $0 --input <input filepaths> --output <output filepath>')
