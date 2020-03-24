@@ -7,6 +7,7 @@ const cheerio = require('cheerio')
 const yargs = require('yargs')
 const merge = require('lodash.merge')
 const camelcase = require('camelcase')
+const { join, resolve } = require('path')
 
 // This script generates a JSON file that contains information about input SVG files.
 // Based on https://github.com/primer/octicons/blob/master/script/build.js
@@ -126,10 +127,6 @@ if (argv.output) {
 } else {
   process.stdout.write(JSON.stringify(iconsByName))
 }
-
-// #!/usr/bin / env node
-const fse = require('fs-extra')
-const { join, resolve } = require('path')
 
 const srcDir = resolve(__dirname, '../lib')
 const dataFile = join(srcDir, 'data.json');
