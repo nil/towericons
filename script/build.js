@@ -158,13 +158,13 @@ export {
   newIconsByName,
   ${newIcons.map(({ name }) => camelCase(name)).join(',\n  ')}
 }`
-  return fse.writeFile(file, code, 'utf8').then(() => {
+  return fs.writeFile(file, code, 'utf8').then(() => {
     console.warn('wrote %s with %d exports', file, count)
     return newIcons
   })
 }
 
-fse
+fs
   .mkdirs(srcDir)
   .then(() => writeIcons(newIconsFile))
   .catch(error => {
