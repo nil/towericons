@@ -137,7 +137,7 @@ const newIconsFile = join(srcDir, 'icons.js')
 
 const GENERATED_HEADER = '/* THIS FILE IS GENERATED. DO NOT EDIT IT. */'
 
-function CamelCase(str) {
+function camelCase(str) {
   return str.replace(/(^|-)([a-z]|\d)/g, (_, __, c) => c.toUpperCase())
 }
 
@@ -146,10 +146,10 @@ const newIcons = Object.values(iconsByName);
 function writeIcons(file) {
   const count = newIcons.length
   const code = `${GENERATED_HEADER}
-${newIcons.map(({ name }) => `import ${name} from '../newIcons/${name}'`).join('\n')}
+${newIcons.map(({ name }) => `import ${camelCase(name)} from './build/${camelCase(name)}'`).join('\n')}
 
 const newIconsByName = {
-  ${newIcons.map(({ key, name }) => `'${key}': ${name}`).join(',\n  ')}
+  ${newIcons.map(({ name }) => `'${name}': ${camelCase(name)}`).join(',\n  ')}
 }
 
 function getIconByName(name) {
@@ -159,7 +159,7 @@ function getIconByName(name) {
 export {
   getIconByName,
   newIconsByName,
-  ${newIcons.map(({ name }) => name).join(',\n  ')}
+  ${newIcons.map(({ name }) => camelCase(name)).join(',\n  ')}
 }`
   return fse.writeFile(file, code, 'utf8').then(() => {
     console.warn('wrote %s with %d exports', file, count)
