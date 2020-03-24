@@ -6,7 +6,6 @@ const globby = require('globby')
 const cheerio = require('cheerio')
 const yargs = require('yargs')
 const merge = require('lodash.merge')
-const camelcase = require('camelcase')
 const { join, resolve } = require('path')
 
 // This script generates a JSON file that contains information about input SVG files.
@@ -118,7 +117,7 @@ if (argv.output) {
 
   for (const key in iconsByName) {
     const icon = iconsByName[key];
-    const componentName = camelcase(icon.name, { pascalCase: true });
+    const componentName = camelCase(icon.name);
     const fileContent = `const ${componentName} = {\n\trender() {\n\t\treturn ${icon.path}\n\t}\n};\n\nexport default ${componentName};`;
 
     fs.writeFileSync(path.resolve(`${argv.output}/${componentName}.js`), fileContent);

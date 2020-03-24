@@ -12,7 +12,6 @@
   "author": "Nil Vila",
   "license": "MIT",
   "devDependencies": {
-    "camelcase": "^5.3.1",
     "cheerio": "^1.0.0-rc.3",
     "fs-extra": "^8.1.0",
     "globby": "^11.0.0",
