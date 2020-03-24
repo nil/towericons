@@ -112,16 +112,13 @@ const iconsByName = icons.reduce(
 )
 
 if (argv.output) {
-  fs.outputJsonSync(path.resolve(`${argv.output}/data.json`), iconsByName);
-
-  let iconList = [];
+  fs.outputJsonSync(dataFile, iconsByName);
 
   for (const key in iconsByName) {
     const icon = iconsByName[key];
     const componentName = camelcase(icon.name, { pascalCase: true });
     const fileContent = `const ${componentName} = {\n\trender() {\n\t\treturn ${icon.path}\n\t}\n};\n\nexport default ${componentName};`;
 
-    iconList.push(componentName);
     fs.writeFileSync(path.resolve(`${argv.output}/${componentName}.js`), fileContent);
   }
 
@@ -131,11 +128,11 @@ if (argv.output) {
 }
 
 // #!/usr/bin / env node
-const octnewIcons = require('../lib/data.json')
 const fse = require('fs-extra')
 const { join, resolve } = require('path')
 
 const srcDir = resolve(__dirname, '../lib')
+const dataFile = join(srcDir, 'data.json');
 const newIconsFile = join(srcDir, 'icons.js')
 
 const GENERATED_HEADER = '/* THIS FILE IS GENERATED. DO NOT EDIT IT. */'
@@ -144,22 +141,7 @@ function CamelCase(str) {
   return str.replace(/(^|-)([a-z]|\d)/g, (_, __, c) => c.toUpperCase())
 }
 
-const octiconNames = [...Object.entries(octnewIcons)]
-
-const newIcons = octiconNames
-  .map(([key, octicon]) => {
-    const { width, height } = octicon
-    const name = CamelCase(key)
-    const type = `Icon<${width}, ${height}>`
-
-    return {
-      key,
-      name,
-      octicon,
-      type
-    }
-  })
-  .sort((a, b) => a.key.localeCompare(b.key))
+const newIcons = Object.values(iconsByName);
 
 function writeIcons(file) {
   const count = newIcons.length
