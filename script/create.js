@@ -15,9 +15,9 @@ const merge = require('lodash.merge')
  */
 
 const inputDir = path.resolve(__dirname, '../temp-icons');
-const outputDir = path.resolve(__dirname, '../lib')
-const dataFile = path.join(outputDir, 'data.json');
-const iconsFile = path.join(outputDir, 'icons.js')
+const outputDir = path.resolve(__dirname, '..')
+const dataFile = path.join(outputDir, 'lib/data.json');
+const iconsFile = path.join(outputDir, 'index.js')
 const generatedText = '/* THIS FILE IS GENERATED. DO NOT EDIT IT. */'
 
 // Convert kebab-case to CamelCase
@@ -104,7 +104,7 @@ console.log('✅ data.json created');
 function writeIcons(file) {
   const count = iconList.length
   const code = `${generatedText}
-${iconList.map(({ name }) => `import ${camelCase(name)} from './build/${camelCase(name)}';`).join('\n')}
+${iconList.map(({ name }) => `import ${camelCase(name)} from './${camelCase(name)}';`).join('\n')}
 
 const iconsByName = {
   ${iconList.map(({ name }) => `'${name}': ${camelCase(name)}`).join(',\n  ')}
@@ -128,7 +128,7 @@ export {
 // Create new file and write all the exports and functions
 fs.mkdirs(outputDir).then(() => {
   writeIcons(iconsFile)
-  console.log('✅ icons.js created');
+  console.log('✅ index.js created');
 }).catch(error => {
   throw new Error(error)
   process.exit(1)
