@@ -1,7 +1,6 @@
 dist
 lib
 node_modules
-temp-icons
 
 yarn.lock
 package-lock.json
