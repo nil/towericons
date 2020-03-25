@@ -30,7 +30,7 @@ function readFullDir(dirPath, fileList) {
 
 // Create the output folder
 fs.mkdir(outputDir, (err) => {
-  if (err) throw err;
+  if (err) throw new Error(`${outputDir}: This directory already exists`)
 });
 
 // Return an array with each icon name and current path
