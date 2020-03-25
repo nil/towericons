@@ -28,11 +28,6 @@ function readFullDir(dirPath, fileList) {
   return fileList;
 }
 
-// Create the output folder
-fs.mkdir(outputDir, (err) => {
-  if (err) throw new Error(`${outputDir}: This directory already exists`)
-});
-
 // Return an array with each icon name and current path
 const iconList = readFullDir(inputDir).map((item) => {
   const shortPath = item.replace(`${inputDir}/`, '');
