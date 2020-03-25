@@ -8,7 +8,7 @@ const path = require('path');
  * before publishing the package to npm.
  */
 
-const testFiles = ['AlertCircle.js', 'GitFork.js', 'Settings.js', 'index.js', 'lib/data.json', 'odadf.adf'];
+const testFiles = ['AlertCircle.js', 'GitFork.js', 'Settings.js', 'index.js', 'lib/data.json'];
 
 for (const file of testFiles) {
   const status = fs.existsSync(path.resolve(__dirname, `../${file}`));
