@@ -29,7 +29,9 @@ function readFullDir(dirPath, fileList) {
 }
 
 // Create the output folder
-fs.mkdirSync(outputDir);
+fs.mkdir(outputDir, (err) => {
+  if (err) throw err;
+});
 
 // Return an array with each icon name and current path
 const iconList = readFullDir(inputDir).map((item) => {
