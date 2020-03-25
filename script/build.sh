@@ -25,7 +25,7 @@ echo "✅ Icons copied to a new directory"
 npm run svgr
 echo "✅ React component files created"
 
-npm run create
+node script/create.js
 # Success messages are inside the script
 
 rm -rf 'temp-icons'
