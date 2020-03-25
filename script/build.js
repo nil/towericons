@@ -2,9 +2,7 @@
 /* eslint-env node */
 const fs = require('fs-extra')
 const path = require('path')
-const globby = require('globby')
 const cheerio = require('cheerio')
-const yargs = require('yargs')
 const merge = require('lodash.merge')
 const { join, resolve } = require('path')
 
@@ -13,6 +11,7 @@ const { join, resolve } = require('path')
 // (https://github.com/primer/octicons/blob/3ba887a80bb62a276813506ceeef48dd64a3d1c4/script/build.js)
 // and https://github.com/mxstbr/octicons/blob/separate-bundle-per-icon/lib/octicons_react/script/build.js
 
+const iconsDir = resolve(__dirname, '../temp-icons');
 const srcDir = resolve(__dirname, '../lib')
 const dataFile = join(srcDir, 'data.json');
 const newIconsFile = join(srcDir, 'icons.js')
@@ -23,19 +22,7 @@ function camelCase(str) {
   return str.replace(/(^|-)([a-z]|\d)/g, (_, __, c) => c.toUpperCase())
 }
 
-//
-//
-//
-//
-// --input icons/**/*.svg --output lib/build
-//
-//
-//
-//
-
-// The `argv.input` array could contain globs (e.g. "**/*.svg").
-const filepaths = globby.sync('icons/**/*.svg')
-const svgFilepaths = filepaths.filter(filepath => path.parse(filepath).ext === '.svg')
+const svgFilepaths = fs.readdirSync(iconsDir).map((file) => join(iconsDir, `/${file}`));
 
 // The icon name will not include its category, except for these categories.
 const categoryException = ['arrow', 'chevron', 'git']
