@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "build": "bash script/build.sh",
-    "unzip": "unzip -o -d icons icons.zip && rm icons.zip",
     "svgo": "svgo --config=.svgo.yml -f icons -r",
     "svgr": "svgr --config-file=.svgrrc.js --out-dir=./ \"temp-icons/*.svg\"",
     "postpublish": "node script/clean.js"
