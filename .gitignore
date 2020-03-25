@@ -1,7 +1,9 @@
 dist
 node_modules
+temp-icons
 
 yarn.lock
 package-lock.json
+yarn-error.log
 
 .DS_Store
