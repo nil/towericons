@@ -37,7 +37,7 @@ if (fileList.length === 0) {
 let exitCode = 0
 
 // Return an array with each icon name and svg code
-const icons = fileList.map(filePath => {
+const iconList = fileList.map(filePath => {
   try {
     const fileShortPath = path.parse(filePath).base;
     const name = path.parse(filePath).name;
@@ -86,7 +86,8 @@ if (exitCode !== 0) {
   process.exit(exitCode)
 }
 
-const iconsByName = icons.reduce(
+// Write JSON file
+fs.outputJsonSync(dataFile, iconList.reduce(
   (acc, icon) =>
     merge(acc, {
       [icon.name]: {
@@ -95,44 +96,37 @@ const iconsByName = icons.reduce(
       }
     }),
   {}
-)
+));
 
-
-  fs.outputJsonSync(dataFile, iconsByName);
-
-
-
-
-const newIcons = Object.values(iconsByName);
-
+// Generate text that will be later written in a new file
 function writeIcons(file) {
-  const count = newIcons.length
+  const count = iconList.length
   const code = `${generatedText}
-${newIcons.map(({ name }) => `import ${camelCase(name)} from './build/${camelCase(name)}'`).join('\n')}
+${iconList.map(({ name }) => `import ${camelCase(name)} from './build/${camelCase(name)}';`).join('\n')}
 
-const newIconsByName = {
-  ${newIcons.map(({ name }) => `'${name}': ${camelCase(name)}`).join(',\n  ')}
-}
+const iconsByName = {
+  ${iconList.map(({ name }) => `'${name}': ${camelCase(name)}`).join(',\n  ')}
+};
 
 function getIconByName(name) {
-  return newIconsByName[name]
-}
+  return iconsByName[name];
+};
 
 export {
   getIconByName,
-  newIconsByName,
-  ${newIcons.map(({ name }) => camelCase(name)).join(',\n  ')}
-}`
+  iconsByName,
+  ${iconList.map(({ name }) => camelCase(name)).join(',\n  ')}
+};`
   return fs.writeFile(file, code, 'utf8').then(() => {
-    console.warn('wrote %s with %d exports', file, count)
-    return newIcons
+    console.log('Wrote %s with %d exports', file, count)
+    return iconList
   })
 }
 
-fs
-  .mkdirs(outputDir)
-  .then(() => writeIcons(iconsFile))
-  .catch(error => {
-    console.error(error)
-    process.exit(1)
-  })
+// Create new file and write all the exports and functions
+fs.mkdirs(outputDir).then(() => {
+  writeIcons(iconsFile)
+}).catch(error => {
+  throw new Error(error)
+  process.exit(1)
+});
