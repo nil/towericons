@@ -2,73 +2,66 @@
 /* eslint-env node */
 const fs = require('fs-extra')
 const path = require('path')
-const cheerio = require('cheerio')
 const merge = require('lodash.merge')
-const { join, resolve } = require('path')
 
-// This script generates a JSON file that contains information about input SVG files.
-// Based on https://github.com/primer/octicons/blob/master/script/build.js
-// (https://github.com/primer/octicons/blob/3ba887a80bb62a276813506ceeef48dd64a3d1c4/script/build.js)
-// and https://github.com/mxstbr/octicons/blob/separate-bundle-per-icon/lib/octicons_react/script/build.js
+/**
+ * This script generates a JSON file that contains information
+ * about input SVG files and a JavaScript to allow importing icons
+ * from a single file and a util to find icons by its kebab-case name.
+ *
+ * Based on https://github.com/primer/octicons/blob/master/script/build.js
+ * (https://github.com/primer/octicons/blob/3ba887a80bb62a276813506ceeef48dd64a3d1c4/script/build.js)
+ * and https://github.com/mxstbr/octicons/blob/separate-bundle-per-icon/lib/octicons_react/script/build.js
+ */
 
-const iconsDir = resolve(__dirname, '../temp-icons');
-const srcDir = resolve(__dirname, '../lib')
-const dataFile = join(srcDir, 'data.json');
-const newIconsFile = join(srcDir, 'icons.js')
+const inputDir = path.resolve(__dirname, '../temp-icons');
+const outputDir = path.resolve(__dirname, '../lib')
+const dataFile = path.join(outputDir, 'data.json');
+const iconsFile = path.join(outputDir, 'icons.js')
+const generatedText = '/* THIS FILE IS GENERATED. DO NOT EDIT IT. */'
 
-const GENERATED_HEADER = '/* THIS FILE IS GENERATED. DO NOT EDIT IT. */'
-
+// Convert kebab-case to CamelCase
 function camelCase(str) {
   return str.replace(/(^|-)([a-z]|\d)/g, (_, __, c) => c.toUpperCase())
 }
 
-const svgFilepaths = fs.readdirSync(iconsDir).map((file) => join(iconsDir, `/${file}`));
+// A list of all files inside the input directory
+const fileList = fs.readdirSync(inputDir).map((file) => path.join(inputDir, `/${file}`));
 
-// The icon name will not include its category, except for these categories.
-const categoryException = ['arrow', 'chevron', 'git']
-
-if (svgFilepaths.length === 0) {
-  console.error('No input SVG file(s) found')
+// Error if the input directory is empty
+if (fileList.length === 0) {
+  console.error('No input SVG files found')
   process.exit(1)
 }
 
 let exitCode = 0
-let vueComponents;
 
-const icons = svgFilepaths.map(filepath => {
+// Return an array with each icon name and svg code
+const icons = fileList.map(filePath => {
   try {
+    const fileShortPath = path.parse(filePath).base;
+    const name = path.parse(filePath).name;
+    const svg = fs.readFileSync(path.resolve(filePath), 'utf8')
 
-    const filename = path.parse(filepath).base;
-    const dirname = path.parse(filepath).dir;
-    const filenamePattern = /(.+).svg/;
-    const categoryPattern = /([^/]*)$/;
-    const category = dirname.match(categoryPattern)[1];
-    const svg = fs.readFileSync(path.resolve(filepath), 'utf8')
-    const svgElement = cheerio.load(svg)('svg')
-    const svgViewBox = svgElement.attr('viewBox')
-
-    let name = filename.match(filenamePattern)[1];
-
-    // Append category to the icon name if it is included in the exceptions list.
-    if (categoryException.includes(category)) {
-      name = `${category}-${name}`
-    }
-
-    if (!svgViewBox) {
-      throw new Error(`${filename}: Missing viewBox attribute.`)
-    }
-
-    const viewBoxPattern = /0 0 ([0-9]+) ([0-9]+)/;
+    const viewBoxPattern = /viewBox/
+    const viewBoxFormatPattern = /viewBox="(0 0 ([0-9]+) ([0-9]+))/;
     const clipPathPattern = /clip-path/;
 
-    if (!viewBoxPattern.test(svgViewBox)) {
+    // Error when there is no viewBox
+    if (!viewBoxPattern.test(svg)) {
+      throw new Error(`${fileShortPath}: Missing viewBox attribute.`)
+    }
+
+    // Error when viewBox does not have the correct pattern
+    if (!viewBoxFormatPattern.test(svg)) {
       throw new Error(
-        `${filename}: Invalid viewBox attribute. The viewBox attribute should be in the following format: "0 0 <width> <height>"`
+        `${fileShortPath}: Pattern for ViewBox attribute should be: "0 0 <width> <height>"`
       )
     }
 
+    // Error when there is a clip-path tag
     if (clipPathPattern.test(svg)) {
-      throw new Error(`${filename}: Invalid clip-path tag.`)
+      throw new Error(`${fileShortPath}: Invalid clip-path tag.`)
     }
 
     return {
@@ -88,7 +81,7 @@ const icons = svgFilepaths.map(filepath => {
   }
 })
 
-// Exit early if any errors occurred.
+// Exit early if any errors occurred
 if (exitCode !== 0) {
   process.exit(exitCode)
 }
@@ -114,7 +107,7 @@ const newIcons = Object.values(iconsByName);
 
 function writeIcons(file) {
   const count = newIcons.length
-  const code = `${GENERATED_HEADER}
+  const code = `${generatedText}
 ${newIcons.map(({ name }) => `import ${camelCase(name)} from './build/${camelCase(name)}'`).join('\n')}
 
 const newIconsByName = {
@@ -137,8 +130,8 @@ export {
 }
 
 fs
-  .mkdirs(srcDir)
-  .then(() => writeIcons(newIconsFile))
+  .mkdirs(outputDir)
+  .then(() => writeIcons(iconsFile))
   .catch(error => {
     console.error(error)
     process.exit(1)
