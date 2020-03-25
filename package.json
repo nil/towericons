@@ -1,13 +1,16 @@
 {
   "name": "nilicons",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "My personal icon set",
   "main": "index.js",
   "scripts": {
     "build": "bash script/build.sh",
+    "unzip": "unzip -o -d icons icons.zip && rm icons.zip",
     "svgo": "svgo --config=.svgo.yml -f icons -r",
     "svgr": "svgr --config-file=.svgrrc.js --out-dir=./lib/icons \"temp-icons/*.svg\"",
-    "tobenamed": "babel --no-babelrc --presets=env,stage-0,react --out-dir ./ ./lib/icons",
+    "babel": "babel --no-babelrc --presets=env,stage-0,react --out-dir ./ ./lib/icons",
+    "rename": "node script/rename.js",
+    "create": "node script/create.js",
     "prepublish": "node script/check.js",
     "postpublish": "node script/clean.js"
   },
