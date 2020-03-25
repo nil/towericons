@@ -23,23 +23,18 @@ function camelCase(str) {
   return str.replace(/(^|-)([a-z]|\d)/g, (_, __, c) => c.toUpperCase())
 }
 
-const {argv} = yargs
-  .usage('Usage: $0 --input <input filepaths> --output <output filepath>')
-  .example('$0 --input icons/**/*.svg --output build/data.json')
-  .option('input', {
-    alias: 'i',
-    type: 'array',
-    demandOption: true,
-    describe: 'Input SVG files'
-  })
-  .option('output', {
-    alias: 'o',
-    type: 'string',
-    describe: 'Ouput JSON file. Defaults to stdout if no output file is provided.'
-  })
+//
+//
+//
+//
+// --input icons/**/*.svg --output lib/build
+//
+//
+//
+//
 
 // The `argv.input` array could contain globs (e.g. "**/*.svg").
-const filepaths = globby.sync(argv.input)
+const filepaths = globby.sync('icons/**/*.svg')
 const svgFilepaths = filepaths.filter(filepath => path.parse(filepath).ext === '.svg')
 
 // The icon name will not include its category, except for these categories.
@@ -122,21 +117,11 @@ const iconsByName = icons.reduce(
   {}
 )
 
-if (argv.output) {
+
   fs.outputJsonSync(dataFile, iconsByName);
 
-  for (const key in iconsByName) {
-    const icon = iconsByName[key];
-    const componentName = camelCase(icon.name);
-    const fileContent = `const ${componentName} = {\n\trender() {\n\t\treturn ${icon.path}\n\t}\n};\n\nexport default ${componentName};`;
-
-    fs.writeFileSync(path.resolve(`${argv.output}/${componentName}.js`), fileContent);
-  }
 
 
-} else {
-  process.stdout.write(JSON.stringify(iconsByName))
-}
 
 const newIcons = Object.values(iconsByName);
 

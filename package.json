@@ -4,14 +4,16 @@
   "description": "My personal icon set",
   "main": "index.js",
   "scripts": {
-    "build": "node script/build.js --input icons/**/*.svg --output lib/build",
+    "build": "node script/build.js",
     "unzip": "unzip -o -d icons icons.zip && rm icons.zip",
     "svgo": "svgo --config=.svgo.yml -f icons -r",
+    "svgr": "svgr --config-file=.svgrrc.js --out-dir=./lib/build \"icons/**/*.svg\"",
     "short": "rm -rf icons &&npm run unzip && npm run svgo && npm run build"
   },
   "author": "Nil Vila",
   "license": "MIT",
   "devDependencies": {
+    "@svgr/cli": "^5.3.0",
     "cheerio": "^1.0.0-rc.3",
     "fs-extra": "^8.1.0",
     "globby": "^11.0.0",
