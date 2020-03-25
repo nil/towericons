@@ -98,6 +98,8 @@ fs.outputJsonSync(dataFile, iconList.reduce(
   {}
 ));
 
+console.log('✅ data.json created');
+
 // Generate text that will be later written in a new file
 function writeIcons(file) {
   const count = iconList.length
@@ -126,6 +128,7 @@ export {
 // Create new file and write all the exports and functions
 fs.mkdirs(outputDir).then(() => {
   writeIcons(iconsFile)
+  console.log('✅ icons.js created');
 }).catch(error => {
   throw new Error(error)
   process.exit(1)
