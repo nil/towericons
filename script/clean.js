@@ -9,10 +9,15 @@ const path = require('path');
  */
 
 const inputDir = path.resolve(__dirname, '..');
+const indexFile = path.resolve(__dirname, '../index.js');
 const fileList = fs.readdirSync(inputDir).filter(file => /[A-Z](.+)?\.js/.test(file));
 
+// Remove all component files
 for (const fileName of fileList) {
   const filePath = path.join(inputDir, `/${fileName}`);
 
   fs.unlinkSync(filePath)
 }
+
+// Remove index.js
+fs.unlinkSync(indexFile)

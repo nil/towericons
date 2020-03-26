@@ -15,8 +15,8 @@ const merge = require('lodash.merge')
  */
 
 const inputDir = path.resolve(__dirname, '../temp-icons');
-const outputDir = path.resolve(__dirname, '..')
-const dataFile = path.join(outputDir, 'lib/data.json');
+const outputDir = path.resolve(__dirname, '../lib')
+const dataFile = path.join(outputDir, 'data.json');
 const iconsFile = path.join(outputDir, 'index.js')
 const generatedText = '/* THIS FILE IS GENERATED. DO NOT EDIT IT. */'
 
@@ -128,6 +128,7 @@ export {
 // Create new file and write all the exports and functions
 fs.mkdirs(outputDir).then(() => {
   writeIcons(iconsFile)
+  writeIcons(path.join(outputDir, '/icons/index.js'))
   console.log('✅ index.js created');
 }).catch(error => {
   throw new Error(error)
