@@ -6,7 +6,7 @@ module.exports = {
 
       function ${componentName}(p) {
         let props = {
-          'aria-hidden': p.ariaLabel ? 'false' : 'true',
+          'aria-hidden': p.ariaLabel ? false : true,
           'aria-label': p.ariaLabel,
           className: p.className,
           height: p.height || p.size || p.width,
