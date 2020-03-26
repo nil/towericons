@@ -27,6 +27,9 @@ npm run build:data
 npm run babel
 echo "✅ Icons correctly compiled"
 
+npm run test
+echo "✅ Tests are successfull"
+
 rm -rf 'temp-icons'
 echo "✅ temp-icons directory removed"
 
