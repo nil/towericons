@@ -3,21 +3,25 @@
 # Exit on any error
 set -e
 
-rm -rf icons
-echo "✅ icons directory removed"
+if [ -f "icons.zip" ]; then
+  rm -rf icons
+  echo "✅ icons directory removed"
 
-npm run unzip
-echo "✅ Unzip completed"
+  unzip -o -d icons icons.zip
+  echo "✅ Unzip completed"
 
-node script/lint.js
-echo "✅ Icons linted without errors"
+  node script/lint.js
+  echo "✅ Icons linted without errors"
 
-npm run svgo
-echo "✅ Icons optimized"
+  rm icons.zip
+  echo "✅ icons.zip removed"
+fi
 
 if [[ $* != *-s* ]]; then
-  mkdir 'temp-icons'
-  echo "✅ temp-icons direcotry created"
+  if [ ! -d "temp-icons" ]; then
+    mkdir "temp-icons"
+    echo "✅ temp-icons direcotry created"
+  fi
 
   npm run build:temp
   echo "✅ Icons copied to a new directory"
@@ -34,7 +38,7 @@ if [[ $* != *-s* ]]; then
   npm run test
   echo "✅ Tests are successfull"
 
-  rm -rf 'temp-icons'
+  rm -rf "temp-icons"
   echo "✅ temp-icons directory removed"
 fi
 
