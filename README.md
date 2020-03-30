@@ -7,7 +7,8 @@ Nilicons is a flexible pack of +200 icons designed to be scalable and look moder
 
 Catalog · Design · React
 
-![Next section](https://user-images.githubusercontent.com/13088397/77935872-94cd3900-72a1-11ea-8e3b-e2d853ba3e94.png)
+![github-divider](https://user-images.githubusercontent.com/13088397/77936045-d8c03e00-72a1-11ea-8387-e8a7b016f4ea.png)
+![github-divider](https://user-images.githubusercontent.com/13088397/77936072-e37ad300-72a1-11ea-8d76-9f09d00aedd1.png)
 
 ## Installation
 
