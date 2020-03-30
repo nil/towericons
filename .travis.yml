@@ -4,3 +4,4 @@ node_js:
   - stable
   - "8"
   - "6"
+before_script: yarn build
