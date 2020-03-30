@@ -12,7 +12,7 @@ Nilicons is a flexible pack of +200 icons designed to be scalable and look moder
 
 [Catalog](nil.github.io/nilicons) · [Design](nil.github.io/nilicons/guidelines) · [React](#installation)
 
-<img src="https://user-images.githubusercontent.com/13088397/77941091-22605700-72a9-11ea-8082-65285ec0d186.png" aria-hidden="true" height="24px" />
+<img src="https://user-images.githubusercontent.com/13088397/77941091-22605700-72a9-11ea-8082-65285ec0d186.png" aria-hidden="true" height="48px" />
 
 ## Installation
 
