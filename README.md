@@ -12,7 +12,7 @@ Nilicons is a flexible pack of +200 icons designed to be scalable and look moder
 
 [Catalog](nil.github.io/nilicons) · [Design](nil.github.io/nilicons/guidelines) · [React](#installation)
 
-<img src="https://user-images.githubusercontent.com/13088397/77941091-22605700-72a9-11ea-8082-65285ec0d186.png" aria-hidden="true" height="48px" />
+<img src="https://user-images.githubusercontent.com/13088397/77941215-56d41300-72a9-11ea-9efd-8b0498416185.png" aria-hidden="true" height="60px" />
 
 ## Installation
 
@@ -21,6 +21,8 @@ npm install v-drag --save
 ```
 
 v-drag’s source code is also available [uncompressed](https://raw.githubusercontent.com/nil/v-drag/master/src/index.js) and [minified](https://raw.githubusercontent.com/nil/v-drag/master/src/index.min.js).
+
+<img src="https://user-images.githubusercontent.com/13088397/77941215-56d41300-72a9-11ea-9efd-8b0498416185.png" aria-hidden="true" height="60px" />
 
 ## Usage
 
@@ -45,6 +47,8 @@ No extra setup is necessary at this point. Add the `v-drag` attribute to any ele
 ```html
 <div v-drag>Drag me!</div>
 ```
+
+<img src="https://user-images.githubusercontent.com/13088397/77941215-56d41300-72a9-11ea-9efd-8b0498416185.png" aria-hidden="true" height="60px" />
 
 ## Options
 
