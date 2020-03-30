@@ -8,7 +8,6 @@
     "build:temp": "node script/temp.js",
     "build:icons": "svgr --config-file=.svgrrc.js --out-dir=./lib/icons \"temp-icons/*.svg\"",
     "build:data": "node script/data.js",
-    "unzip": "unzip -o -d icons icons.zip && rm icons.zip",
     "svgo": "svgo --config=.svgo.yml -f icons -r",
     "babel": "babel ./lib/icons --out-dir ./",
     "test": "jest",
