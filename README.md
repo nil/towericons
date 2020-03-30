@@ -1,4 +1,4 @@
-![Cover image](https://user-images.githubusercontent.com/13088397/77937999-9fd59880-72a4-11ea-9bed-c7f16d41c885.png)
+![Cover image](https://user-images.githubusercontent.com/13088397/77938181-e1664380-72a4-11ea-99aa-adf41a175407.png)
 
 # Nilicons
 An icon pack for the modern designer and developer
