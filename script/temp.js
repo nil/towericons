@@ -1,5 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
+const readFullDir = require('./utils/readFullDir');
 
 
 /**
@@ -11,22 +12,6 @@ const path = require('path');
 const inputDir = path.resolve(__dirname, '../icons');
 const outputDir = path.resolve(__dirname, '../temp-icons');
 const categoryException = ['arrow', 'chevron', 'git'];
-
-// Get all files inside a directory and the directories inside it
-function readFullDir(dirPath, fileList) {
-  const files = fs.readdirSync(dirPath);
-  fileList = fileList || [];
-
-  files.forEach(function (file) {
-    if (fs.statSync(dirPath + "/" + file).isDirectory()) {
-      fileList = readFullDir(`${dirPath}/${file}`, fileList)
-    } else {
-      fileList.push(`${dirPath}/${file}`)
-    }
-  })
-
-  return fileList;
-}
 
 // Return an array with each icon name and current path
 const iconList = readFullDir(inputDir).map((item) => {
