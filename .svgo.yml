@@ -6,4 +6,4 @@ plugins:
   - mergePaths:
       force: true
   - removeAttrs:
-      attrs: '(stroke|fill|clip-rule)'
+      attrs: '(fill|clip-rule)'

@@ -46,6 +46,7 @@ const iconList = fileList.map(filePath => {
     const viewBoxPattern = /viewBox/
     const viewBoxFormatPattern = /viewBox="(0 0 ([0-9]+) ([0-9]+))/;
     const clipPathPattern = /clip-path/;
+    const strokePattern = /stroke/;
 
     // Error when there is no viewBox
     if (!viewBoxPattern.test(svg)) {
@@ -62,6 +63,11 @@ const iconList = fileList.map(filePath => {
     // Error when there is a clip-path tag
     if (clipPathPattern.test(svg)) {
       throw new Error(`${fileShortPath}: Invalid clip-path tag.`)
+    }
+
+    // Error when there is a clip-path tag
+    if (strokePattern.test(svg)) {
+      throw new Error(`${fileShortPath}: Invalid stroke and store-width attributes.`)
     }
 
     return {
