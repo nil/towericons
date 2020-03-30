@@ -18,3 +18,5 @@ Catalog · Design · React
 ## Installation
 
 blah blah
+
+<style>body { background: red}</style>
