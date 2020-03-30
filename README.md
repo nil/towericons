@@ -19,4 +19,6 @@ Catalog · Design · React
 
 blah blah
 
-<style>body { background: red}</style>
+<style>
+  body { background: red }
+</style>
