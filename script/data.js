@@ -34,63 +34,16 @@ if (fileList.length === 0) {
   process.exit(1)
 }
 
-let exitCode = 0
-
 // Return an array with each icon name and svg code
 const iconList = fileList.map(filePath => {
-  try {
-    const fileShortPath = path.parse(filePath).base;
-    const name = path.parse(filePath).name;
-    const svg = fs.readFileSync(path.resolve(filePath), 'utf8')
+  const name = path.parse(filePath).name;
+  const svg = fs.readFileSync(path.resolve(filePath), 'utf8')
 
-    const viewBoxPattern = /viewBox/
-    const viewBoxFormatPattern = /viewBox="(0 0 ([0-9]+) ([0-9]+))/;
-    const clipPathPattern = /clip-path/;
-    const strokePattern = /stroke/;
-
-    // Error when there is no viewBox
-    if (!viewBoxPattern.test(svg)) {
-      throw new Error(`${fileShortPath}: Missing viewBox attribute.`)
-    }
-
-    // Error when viewBox does not have the correct pattern
-    if (!viewBoxFormatPattern.test(svg)) {
-      throw new Error(
-        `${fileShortPath}: Pattern for ViewBox attribute should be: "0 0 <width> <height>"`
-      )
-    }
-
-    // Error when there is a clip-path tag
-    if (clipPathPattern.test(svg)) {
-      throw new Error(`${fileShortPath}: Invalid clip-path tag.`)
-    }
-
-    // Error when there is a clip-path tag
-    if (strokePattern.test(svg)) {
-      throw new Error(`${fileShortPath}: Invalid stroke and store-width attributes.`)
-    }
-
-    return {
-      name,
-      path: svg
-    }
-  } catch (error) {
-    console.error(error)
-
-    // Instead of exiting immediately, we set exitCode to 1 and continue
-    // iterating through the rest of the SVGs. This allows us to identify all
-    // the SVGs that have errors, not just the first one. An exit code of 1
-    // indicates that an error occured.
-    // Reference: https://nodejs.org/api/process.html#process_exit_codes
-    exitCode = 1
-    return null
+  return {
+    name,
+    path: svg
   }
 })
-
-// Exit early if any errors occurred
-if (exitCode !== 0) {
-  process.exit(exitCode)
-}
 
 // Write JSON file
 fs.outputJsonSync(dataFile, iconList.reduce(

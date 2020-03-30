@@ -9,6 +9,9 @@ echo "✅ icons directory removed"
 npm run unzip
 echo "✅ Unzip completed"
 
+node script/lint.js
+echo "✅ Icons linted without errors"
+
 npm run svgo
 echo "✅ Icons optimized"
 
