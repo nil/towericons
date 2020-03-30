@@ -1,9 +1,13 @@
-![Cover image](https://user-images.githubusercontent.com/13088397/77938317-17a3c300-72a5-11ea-9c2f-e7893533a3c7.png)
+![Cover image](https://user-images.githubusercontent.com/13088397/77938695-a284bd80-72a5-11ea-9b34-d62fdfe35467.png)
 
 # Nilicons
-An icon pack for the modern designer and developer
+An icon pack for the modern designer and developer</p>
 
-[Badges]
+
+[![Build status](https://travis-ci.org/nil/nilicons.svg?branch=master)](https://travis-ci.org/nil/nilicons)
+[![Dependencies status](https://img.shields.io/david/dev/nil/nilicons.svg)](https://david-dm.org/nil/nilicons)
+[![Version](https://img.shields.io/npm/v/nilicons.svg)](https://www.npmjs.com/package/nilicons)
+[![License](https://img.shields.io/npm/l/nilicons.svg)](https://github.com/nil/nilicons/blob/master/LICENSE)
 
 Nilicons is a flexible pack of +200 icons designed to be scalable and look modern, and built upon the principles of simplicity, consistency, and flexibility. The set covers all common needs and many uncommon, and it offers an editable SVG of each icon, together with its React component.
 
