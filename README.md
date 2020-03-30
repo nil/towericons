@@ -1,4 +1,4 @@
-![Preview of Nilicon icons](https://user-images.githubusercontent.com/13088397/77939328-8897aa80-72a6-11ea-884e-3861f86fe48f.png)
+![Preview of Nilicon icons](https://user-images.githubusercontent.com/13088397/77941568-e4176780-72a9-11ea-9d1c-67a550180198.png)
 
 # Nilicons
 An icon pack for the modern designer and developer</p>
@@ -8,9 +8,11 @@ An icon pack for the modern designer and developer</p>
 [![Version](https://img.shields.io/npm/v/nilicons.svg)](https://www.npmjs.com/package/nilicons)
 [![License](https://img.shields.io/npm/l/nilicons.svg)](https://github.com/nil/nilicons/blob/master/LICENSE)
 
+<br />
+
 Nilicons is a flexible pack of +200 icons designed to be scalable and look modern, and built upon the principles of simplicity, consistency, and flexibility. The set covers all common needs and many uncommon, and it offers an editable SVG of each icon, together with its React component.
 
-[Catalog](nil.github.io/nilicons) · [Design](nil.github.io/nilicons/guidelines) · [React](#installation)
+Quick links: [Catalog](nil.github.io/nilicons) · [Design](nil.github.io/nilicons/guidelines) · [React](#installation)
 
 <img src="https://user-images.githubusercontent.com/13088397/77941215-56d41300-72a9-11ea-9efd-8b0498416185.png" aria-hidden="true" height="60px" />
 
