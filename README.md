@@ -7,6 +7,7 @@ An icon pack for the modern designer and developer</p>
 [![Dependencies status](https://img.shields.io/david/dev/nil/nilicons.svg)](https://david-dm.org/nil/nilicons)
 [![Version](https://img.shields.io/npm/v/nilicons.svg)](https://www.npmjs.com/package/nilicons)
 [![License](https://img.shields.io/npm/l/nilicons.svg)](https://github.com/nil/nilicons/blob/master/LICENSE)
+[![Open Collective](https://img.shields.io/opencollective/all/nilicons?label=backers)](https://opencollective.com/nilicons)
 
 <br />
 
@@ -19,29 +20,33 @@ Quick links: [Catalog](nil.github.io/nilicons) · [Design](nil.github.io/nilicon
 ## Installation
 
 ```sh
-npm install v-drag --save
+npm install nilicons --save
 ```
 
-v-drag’s source code is also available [uncompressed](https://raw.githubusercontent.com/nil/v-drag/master/src/index.js) and [minified](https://raw.githubusercontent.com/nil/v-drag/master/src/index.min.js).
-
-<img src="https://user-images.githubusercontent.com/13088397/77941215-56d41300-72a9-11ea-9efd-8b0498416185.png" aria-hidden="true" height="60px" />
+<img src="https://user-images.githubusercontent.com/13088397/78355635-4e801e80-75ae-11ea-9e4b-7d6b63e3882a.png" aria-hidden="true" height="60px" />
 
 ## Usage
 
-Import v-drag into any file you are planning to use it. You can use either import or require, although the first one is recommended as it’s part of the ES6 spec:
+To reduce the size of your bundle, each icon is located in an individual file, so its usage is a bit more complicated than importing the default value from the package. [...]
+
+### Import a single icon
+
+This is the preferred method to import one single icon. Notice the icon's name is also included in the import path.
 
 ```js
-import drag from "v-drag"
+import AlertCircle from 'nilicons/AlertCircle';
 ```
 
+### Import multiple icons
+
 ```js
-const drag = require("v-drag");
+import { Archive, ZoomIn } from 'nilicons';
 ```
 
-Then call the v-drag plugin:
+### Import all icons at once
 
 ```js
-Vue.use(drag);
+import * from 'nilicons';
 ```
 
 No extra setup is necessary at this point. Add the `v-drag` attribute to any element to make it draggable:
@@ -51,15 +56,3 @@ No extra setup is necessary at this point. Add the `v-drag` attribute to any ele
 ```
 
 <img src="https://user-images.githubusercontent.com/13088397/77941215-56d41300-72a9-11ea-9efd-8b0498416185.png" aria-hidden="true" height="60px" />
-
-## Options
-
-The default behavior for any element with the `v-drag` attribute is to be draggable in any direction and without a handle. However, this can be changed using an object or its equivalent shortcuts:
-
-```html
-<div v-drag="{ axis: 'x', handle: '#someElement' }">
-  <div id="someElement">Handle</div>
-</div>
-```
-
-Both the object and the values can be declared inline, as in the example above, or using the `data` object, computed properties, methods, props,…
