@@ -10,6 +10,9 @@ if [ -f "icons.zip" ]; then
   unzip -o -d icons icons.zip
   echo "✅ Unzip completed"
 
+  svgo --config=.svgo.yml --pretty --disable=removeDimensions -f icons -r
+  echo "✅ Icons optimized"
+
   node script/lint.js
   echo "✅ Icons linted without errors"
 
