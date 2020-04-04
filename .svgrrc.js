@@ -1,5 +1,4 @@
 module.exports = {
-  ////// TODO: "This is not the responsibility of this library.I suggest you to create a script that rename SVG before running svgr."
   template: (babel, opts, { imports, componentName, props, jsx, exports }) => {
     return babel.template.ast`
       ${imports}
