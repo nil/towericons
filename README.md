@@ -1,4 +1,4 @@
-![Preview of Nilicon icons](https://user-images.githubusercontent.com/13088397/77941568-e4176780-72a9-11ea-9d1c-67a550180198.png)
+![Preview of Nilicon icons](https://user-images.githubusercontent.com/13088397/79734899-bc8b4c00-82f7-11ea-9df4-46aad6cc5fda.png)
 
 # Nilicons
 An icon pack for the modern designer and developer</p>
@@ -29,12 +29,13 @@ npm install nilicons --save
 
 To reduce the size of your bundle, each icon is located in an individual file, so its usage is a bit more complicated than importing the default value from the package. [...]
 
-### Import a single icon
+### Import a single icon
 
 This is the preferred method to import one single icon. Notice the icon's name is also included in the import path.
 
 ```js
 import AlertCircle from 'nilicons/AlertCircle';
+import ChevronDown from 'nilicons/ChevronDown';
 ```
 
 ### Import multiple icons
@@ -51,8 +52,12 @@ import * from 'nilicons';
 
 No extra setup is necessary at this point. Add the `v-drag` attribute to any element to make it draggable:
 
-```html
-<div v-drag>Drag me!</div>
+```jsx
+// Use as a component
+<AlertCircle />
+
+// Use as a prop
+<YouComponent icon={ZoomIn} />
 ```
 
 <img src="https://user-images.githubusercontent.com/13088397/77941215-56d41300-72a9-11ea-9efd-8b0498416185.png" aria-hidden="true" height="60px" />
