@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const fs = require('fs-extra');
 
 /**
@@ -11,13 +12,13 @@ module.exports = function readFullDir(dirPath, fileList) {
   const files = fs.readdirSync(dirPath);
   fileList = fileList || [];
 
-  files.forEach(function (file) {
-    if (fs.statSync(dirPath + "/" + file).isDirectory()) {
-      fileList = readFullDir(`${dirPath}/${file}`, fileList)
+  files.forEach((file) => {
+    if (fs.statSync(`${dirPath}/${file}`).isDirectory()) {
+      fileList = readFullDir(`${dirPath}/${file}`, fileList);
     } else {
-      fileList.push(`${dirPath}/${file}`)
+      fileList.push(`${dirPath}/${file}`);
     }
-  })
+  });
 
   return fileList;
-}
+};

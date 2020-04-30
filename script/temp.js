@@ -13,14 +13,12 @@ const inputDir = path.resolve(__dirname, '../icons');
 const outputDir = path.resolve(__dirname, '../temp-icons');
 
 // Return an array with each icon name and current path
-const iconList = readFullDir(inputDir).map((item) => {
-  return {
-    path: item,
-    name: path.basename(item)
-  };
-});
+const iconList = readFullDir(inputDir).map((item) => ({
+  path: item,
+  name: path.basename(item)
+}));
 
 // Copy file to the output directory with a new name
-for (const icon of iconList) {
-  fs.copyFile(icon.path, path.resolve(outputDir, `./${icon.name}`))
-}
+iconList.forEach((icon) => {
+  fs.copyFile(icon.path, path.resolve(outputDir, `./${icon.name}`));
+});
