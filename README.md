@@ -1,7 +1,7 @@
 ![Preview of Nilicon icons](https://user-images.githubusercontent.com/13088397/79734899-bc8b4c00-82f7-11ea-9df4-46aad6cc5fda.png)
 
 # Nilicons
-An icon pack for the modern designer and developer</p>
+An icon pack for the modern designer and developer.
 
 [![Build status](https://travis-ci.org/nil/nilicons.svg?branch=master)](https://travis-ci.org/nil/nilicons)
 [![Dependencies status](https://img.shields.io/david/dev/nil/nilicons.svg)](https://david-dm.org/nil/nilicons)
@@ -13,44 +13,43 @@ An icon pack for the modern designer and developer</p>
 
 Nilicons is a flexible pack of +200 icons designed to be scalable and look modern, and built upon the principles of simplicity, consistency, and flexibility. The set covers all common needs and many uncommon, and it offers an editable SVG of each icon, together with its React component.
 
-Quick links: [Catalog](nil.github.io/nilicons) · [Design](nil.github.io/nilicons/guidelines) · [React](#installation)
+Quick links: [Catalog](nil.github.io/nilicons) · [Design](nil.github.io/nilicons/guidelines) · [React](#installation) · [Figma]()
 
 <img src="https://user-images.githubusercontent.com/13088397/77941215-56d41300-72a9-11ea-9efd-8b0498416185.png" aria-hidden="true" height="60px" />
 
 ## Installation
 
 ```sh
-npm install nilicons --save
+# With npm
+$ npm install nilicons --save
+
+# Or, with yarn
+$ yarn add nilicons
 ```
 
 <img src="https://user-images.githubusercontent.com/13088397/78355635-4e801e80-75ae-11ea-9e4b-7d6b63e3882a.png" aria-hidden="true" height="60px" />
 
 ## Usage
 
-To reduce the size of your bundle, each icon is located in an individual file, so its usage is a bit more complicated than importing the default value from the package. [...]
-
-### Import a single icon
-
-This is the preferred method to import one single icon. Notice the icon's name is also included in the import path.
+To reduce the size of your bundle, each icon is located in an individual file. While this will make your production code significantly lighter, it will also require one import statement for each icon you would like to use. Each statement must include the name of the icon:
 
 ```js
 import AlertCircle from 'nilicons/AlertCircle';
 import ChevronDown from 'nilicons/ChevronDown';
 ```
 
-### Import multiple icons
+However, Nilicons also comes with a single file that includes the React component of each icon, so you can import multiple icons at once from the same file or import all files in the icon pack. Please, be aware that using this method will result in *all* icons included in your build bundle.
+
 
 ```js
+// Import muiltiple icons
 import { Archive, ZoomIn } from 'nilicons';
-```
 
-### Import all icons at once
-
-```js
+// Import all icons
 import * from 'nilicons';
 ```
 
-No extra setup is necessary at this point. Add the `v-drag` attribute to any element to make it draggable:
+No extra setup is necessary at this point. You can now start using the icon as a React component or pass it to another component as a prop:
 
 ```jsx
 // Use as a component
@@ -61,3 +60,69 @@ No extra setup is necessary at this point. Add the `v-drag` attribute to any ele
 ```
 
 <img src="https://user-images.githubusercontent.com/13088397/77941215-56d41300-72a9-11ea-9efd-8b0498416185.png" aria-hidden="true" height="60px" />
+
+## Options, <i style="opacity: 0.3">coming soon</i>
+
+### Size, `auto`
+
+Change the size of the icon. Nilicon icons are designed in a 32px grid, so using a multiple of this size is recommended (16px, 24px, 32px or 48px).
+
+```js
+<AlertCircle size={32} />
+<ChevronDown size="24px" />
+<ZoomIn size="auto" />
+```
+
+### Color, `undefined`
+
+Set a custom color for the icon. By default it is unspecified, so it will take the color defined by the CSS or, if there is no style applied, black.
+
+```js
+<Archive color="blue" />
+<ChevronDown color="#FFF000" />
+<ZoomIn color="currentColor" />
+```
+
+<img src="https://user-images.githubusercontent.com/13088397/77941215-56d41300-72a9-11ea-9efd-8b0498416185.png" aria-hidden="true" height="60px" />
+
+## Contributing
+
+If you find any issue, have troubles figuring out something or want to suggest a change, please [open an issue](https://github.com/nil/nilicons/issues/new/choose) or [make a pull request](https://github.com/nil/nilicons/compare). Any kind of contribution is welcomed and very appreciated.
+
+### Local development
+
+Clone the repository:
+
+```sh
+$ git clone https://github.com/nil/nilicons
+
+$ cd nilicons
+```
+
+Install the dependencies:
+
+```sh
+$ npm install
+```
+
+To build the icons and components, Nilicons takes the .svg files inside a zip folder named icons.zip. This is because the icons are designed in [Figma]() and exported using [Dynamic Icon Export](https://github.com/nil/figma-dynamic-icon-export), which exports every icon in multiple sizes.
+
+```sh
+# Both icons and components
+$ npm run build
+
+# Only icons
+$ npm run build -s
+```
+
+### Local design
+
+To design a new icon, you must follow the [design guidelines](), though understand that sometimes is okay to brake these rules. There is a public Figma file containing the whole pack of icons and the base grid is available for [Figma](), [Sketch](), [Illustrator]() and in [SVG]().
+
+[Open a new issue][https://github.com/nil/nilicons/issues/new?assignees=&labels=icon+request&template=icon-request.md&title=%5BIcon+request%5D] with the `icon request` template. If you are designing in Figma, make sure the link can be viewed by everyone.
+
+<img src="https://user-images.githubusercontent.com/13088397/77941215-56d41300-72a9-11ea-9efd-8b0498416185.png" aria-hidden="true" height="60px" />
+
+## License
+
+Copyright © 2020 Nil Vila. Released under the [MIT License](https://github.com/nil/nilicons/blob/master/LICENSE).
