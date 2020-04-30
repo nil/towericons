@@ -14,7 +14,7 @@ An icon pack for the modern designer and developer.
 
 Nilicons is a flexible pack of +200 icons designed to be scalable and look modern, and built upon the principles of simplicity, consistency, and flexibility. The set covers all common needs and many uncommon, and it offers an editable SVG of each icon, together with its React component.
 
-Quick links: [Catalog](https://nil.github.io/nilicons) · [Design](https://nil.github.io/nilicons/guidelines) · [React](#installation) · [Figma](https://www.figma.com/file/84My22ahq47CcqA8b9QEhw/Nilicons?node-id=0%3A1)
+Quick links:&emsp;[Catalog](https://nil.github.io/nilicons) · [Design](https://nil.github.io/nilicons/guidelines) · [React](#installation) · [Figma](https://www.figma.com/file/84My22ahq47CcqA8b9QEhw/Nilicons?node-id=0%3A1) · [Donate](https://paypal.me/nilvilam)
 
 <img src="https://user-images.githubusercontent.com/13088397/80711254-5a4cfb00-8af0-11ea-9bd1-e92c1b80741d.png" aria-hidden="true" height="60px" />
 
@@ -127,3 +127,14 @@ To design a new icon or update an existing one, you must follow the [design guid
 ## License
 
 Copyright © 2020 Nil Vila. Released under the [MIT License](https://github.com/nil/nilicons/blob/master/LICENSE).
+
+<br />
+<hr />
+<br />
+
+<a href="https://paypal.me/nilvilam" target="_blank">
+  <img src="https://img.shields.io/static/v1?label=&message=Donate&color=003087" alt="Donate" height="32px" />
+</a>
+<a href="https://opencolective.com/nilicons" target="_blank">
+  <img src="https://img.shields.io/opencollective/all/nilicons?label=backers" alt="Become a backer" height="32px" />
+</a>
