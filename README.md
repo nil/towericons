@@ -119,7 +119,7 @@ $ npm run build -s
 
 To design a new icon, you must follow the [design guidelines](), though understand that sometimes is okay to brake these rules. There is a public Figma file containing the whole pack of icons and the base grid is available for [Figma](), [Sketch](), [Illustrator]() and in [SVG]().
 
-[Open a new issue][https://github.com/nil/nilicons/issues/new?assignees=&labels=icon+request&template=icon-request.md&title=%5BIcon+request%5D] with the `icon request` template. If you are designing in Figma, make sure the link can be viewed by everyone.
+[Open a new issue](https://github.com/nil/nilicons/issues/new?assignees=&labels=icon+request&template=icon-request.md&title=%5BIcon+request%5D) with the `icon request` template. If you are designing in Figma, make sure the link can be viewed by everyone.
 
 <img src="https://user-images.githubusercontent.com/13088397/80711256-5ae59180-8af0-11ea-9b9f-7934f4a19170.png" aria-hidden="true" height="60px" />
 
