@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-const fs = require('fs-extra')
-const path = require('path')
+const fs = require('fs-extra');
+const path = require('path');
 const readFullDir = require('./utils/readFullDir');
 
 
@@ -20,16 +20,15 @@ let exitCode = 0;
 
 // Easily write the error message
 function errorMessage(file, text) {
-  console.error('\x1b[31m', `🛑 ${file}:`, '\x1b[0m', text);
+  throw new Error('\x1b[31m', `🛑 ${file}:`, '\x1b[0m', text);
 }
 
 // Error if the input directory is empty
 if (fileList.length === 0) {
-  console.error('🛑 No input SVG files found')
-  process.exit(1)
+  throw new Error('🛑 No input SVG files found');
 }
 
-for (const file of fileList) {
+fileList.forEach((file) => {
   const fileShortPath = path.parse(file).base;
   const svg = fs.readFileSync(path.resolve(file), 'utf8');
 
@@ -58,9 +57,9 @@ for (const file of fileList) {
   }
 
   // TODO: multiple path tags
-}
+});
 
 // Exit early if any errors occurred
 if (exitCode !== 0) {
-  process.exit(exitCode)
+  process.exit(exitCode);
 }
