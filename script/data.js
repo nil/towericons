@@ -25,8 +25,11 @@ function camelCase(str) {
   return str.replace(/(^|-)([a-z]|\d)/g, (_, __, c) => c.toUpperCase())
 }
 
-// A list of all files inside the input directory
-const fileList = fs.readdirSync(inputDir).map((file) => path.join(inputDir, `/${file}`));
+// A list of all files inside the input directory,
+// except those whose name starts with a dot
+const fileList = fs.readdirSync(inputDir)
+  .filter((file) => !file.startsWith('.'))
+  .map((file) => path.join(inputDir, `/${file}`));
 
 // Error if the input directory is empty
 if (fileList.length === 0) {
