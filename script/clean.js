@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-/* eslint-env node */
-const fs = require('fs-extra')
+const fs = require('fs-extra');
 const path = require('path');
 
 /**
@@ -10,14 +9,14 @@ const path = require('path');
 
 const inputDir = path.resolve(__dirname, '..');
 const indexFile = path.resolve(__dirname, '../index.js');
-const fileList = fs.readdirSync(inputDir).filter(file => /[A-Z](.+)?\.js/.test(file));
+const fileList = fs.readdirSync(inputDir).filter((file) => /[A-Z](.+)?\.js/.test(file));
 
 // Remove all component files
-for (const fileName of fileList) {
+fileList.forEach((fileName) => {
   const filePath = path.join(inputDir, `/${fileName}`);
 
-  fs.unlinkSync(filePath)
-}
+  fs.unlinkSync(filePath);
+});
 
 // Remove index.js
-fs.unlinkSync(indexFile)
+fs.unlinkSync(indexFile);

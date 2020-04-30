@@ -10,6 +10,9 @@ if [ -f "icons.zip" ]; then
   unzip -o -d icons icons.zip
   echo "✅ Unzip completed"
 
+  svgo --config=.svgo.yml --pretty --disable=removeDimensions -f icons -r
+  echo "✅ Icons optimized"
+
   node script/lint.js
   echo "✅ Icons linted without errors"
 
@@ -21,6 +24,11 @@ if [[ $* != *-s* ]]; then
   if [ ! -d "temp-icons" ]; then
     mkdir "temp-icons"
     echo "✅ temp-icons direcotry created"
+  fi
+
+  if [ -d "lib" ]; then
+    rm -rf "lib"
+    echo "✅ lib directory removed"
   fi
 
   npm run build:temp
