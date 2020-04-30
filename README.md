@@ -1,4 +1,4 @@
-![Preview of Nilicon icons](https://user-images.githubusercontent.com/13088397/79734899-bc8b4c00-82f7-11ea-9df4-46aad6cc5fda.png)
+![Preview of Nilicon icons](https://user-images.githubusercontent.com/13088397/80711253-59b46480-8af0-11ea-9118-e867400018a8.png)
 
 # Nilicons
 An icon pack for the modern designer and developer.
@@ -15,7 +15,7 @@ Nilicons is a flexible pack of +200 icons designed to be scalable and look moder
 
 Quick links: [Catalog](nil.github.io/nilicons) · [Design](nil.github.io/nilicons/guidelines) · [React](#installation) · [Figma]()
 
-<img src="https://user-images.githubusercontent.com/13088397/77941215-56d41300-72a9-11ea-9efd-8b0498416185.png" aria-hidden="true" height="60px" />
+<img src="https://user-images.githubusercontent.com/13088397/80711254-5a4cfb00-8af0-11ea-9bd1-e92c1b80741d.png" aria-hidden="true" height="60px" />
 
 ## Installation
 
@@ -27,7 +27,7 @@ $ npm install nilicons --save
 $ yarn add nilicons
 ```
 
-<img src="https://user-images.githubusercontent.com/13088397/78355635-4e801e80-75ae-11ea-9e4b-7d6b63e3882a.png" aria-hidden="true" height="60px" />
+<img src="https://user-images.githubusercontent.com/13088397/80711260-5b7e2800-8af0-11ea-9f10-b5b1d727a9a5.png" aria-hidden="true" height="60px" />
 
 ## Usage
 
@@ -59,7 +59,7 @@ No extra setup is necessary at this point. You can now start using the icon as a
 <YouComponent icon={ZoomIn} />
 ```
 
-<img src="https://user-images.githubusercontent.com/13088397/77941215-56d41300-72a9-11ea-9efd-8b0498416185.png" aria-hidden="true" height="60px" />
+<img src="https://user-images.githubusercontent.com/13088397/80711258-5b7e2800-8af0-11ea-80a8-f179cc157f4a.png" aria-hidden="true" height="60px" />
 
 ## Options, <i style="opacity: 0.3">coming soon</i>
 
@@ -83,7 +83,7 @@ Set a custom color for the icon. By default it is unspecified, so it will take t
 <ZoomIn color="currentColor" />
 ```
 
-<img src="https://user-images.githubusercontent.com/13088397/77941215-56d41300-72a9-11ea-9efd-8b0498416185.png" aria-hidden="true" height="60px" />
+<img src="https://user-images.githubusercontent.com/13088397/80711250-591bce00-8af0-11ea-90ad-80510cbab674.png" aria-hidden="true" height="60px" />
 
 ## Contributing
 
@@ -121,7 +121,7 @@ To design a new icon, you must follow the [design guidelines](), though understa
 
 [Open a new issue][https://github.com/nil/nilicons/issues/new?assignees=&labels=icon+request&template=icon-request.md&title=%5BIcon+request%5D] with the `icon request` template. If you are designing in Figma, make sure the link can be viewed by everyone.
 
-<img src="https://user-images.githubusercontent.com/13088397/77941215-56d41300-72a9-11ea-9efd-8b0498416185.png" aria-hidden="true" height="60px" />
+<img src="https://user-images.githubusercontent.com/13088397/80711256-5ae59180-8af0-11ea-9b9f-7934f4a19170.png" aria-hidden="true" height="60px" />
 
 ## License
 
