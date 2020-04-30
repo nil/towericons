@@ -3,6 +3,7 @@
 # Nilicons
 An icon pack for the modern designer and developer.
 
+[![Donate](https://img.shields.io/static/v1?label=&message=Donate&color=003087&width=400)](https://paypal.me/nilvilam)
 [![Build status](https://travis-ci.org/nil/nilicons.svg?branch=master)](https://travis-ci.org/nil/nilicons)
 [![Dependencies status](https://img.shields.io/david/dev/nil/nilicons.svg)](https://david-dm.org/nil/nilicons)
 [![Version](https://img.shields.io/npm/v/nilicons.svg)](https://www.npmjs.com/package/nilicons)
@@ -87,7 +88,7 @@ Set a custom color for the icon. By default it is unspecified, so it will take t
 
 ## Contributing
 
-If you find any issue, have troubles figuring out something or want to suggest a change, please [open an issue](https://github.com/nil/nilicons/issues/new/choose) or [make a pull request](https://github.com/nil/nilicons/compare). Any kind of contribution is welcomed and very appreciated.
+If you find any issue, have troubles figuring out something or want to suggest a change, please [open an issue](https://github.com/nil/nilicons/issues/new/choose) or [make a pull request](https://github.com/nil/nilicons/compare). You can also [donate to keep the repo alive](https://paypal.me/nilvilam). Any kind of contribution is welcomed and very appreciated.
 
 ### Local development
 
