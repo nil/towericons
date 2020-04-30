@@ -13,7 +13,7 @@ An icon pack for the modern designer and developer.
 
 Nilicons is a flexible pack of +200 icons designed to be scalable and look modern, and built upon the principles of simplicity, consistency, and flexibility. The set covers all common needs and many uncommon, and it offers an editable SVG of each icon, together with its React component.
 
-Quick links: [Catalog](nil.github.io/nilicons) · [Design](nil.github.io/nilicons/guidelines) · [React](#installation) · [Figma]()
+Quick links: [Catalog](https://nil.github.io/nilicons) · [Design](https://nil.github.io/nilicons/guidelines) · [React](#installation) · [Figma]()
 
 <img src="https://user-images.githubusercontent.com/13088397/80711254-5a4cfb00-8af0-11ea-9bd1-e92c1b80741d.png" aria-hidden="true" height="60px" />
 
@@ -56,7 +56,7 @@ No extra setup is necessary at this point. You can now start using the icon as a
 <AlertCircle />
 
 // Use as a prop
-<YouComponent icon={ZoomIn} />
+<YourComponent icon={ZoomIn} />
 ```
 
 <img src="https://user-images.githubusercontent.com/13088397/80711258-5b7e2800-8af0-11ea-80a8-f179cc157f4a.png" aria-hidden="true" height="60px" />
@@ -105,13 +105,13 @@ Install the dependencies:
 $ npm install
 ```
 
-To build the icons and components, Nilicons takes the .svg files inside a zip folder named icons.zip. This is because the icons are designed in [Figma]() and exported using [Dynamic Icon Export](https://github.com/nil/figma-dynamic-icon-export), which exports every icon in multiple sizes.
+To build the icons and components, Nilicons takes the .svg files inside a zip folder named `icons.zip`. This is because the icons are designed in Figma and exported using the [Dynamic Icon Export](https://github.com/nil/figma-dynamic-icon-export) plugin, which exports every icon in multiple sizes.
 
 ```sh
-# Both icons and components
+# Generate both icons and components
 $ npm run build
 
-# Only icons
+# Only generate icons
 $ npm run build -s
 ```
 
