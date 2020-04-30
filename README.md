@@ -128,7 +128,6 @@ To design a new icon or update an existing one, you must follow the [design guid
 
 Copyright © 2020 Nil Vila. Released under the [MIT License](https://github.com/nil/nilicons/blob/master/LICENSE).
 
-<br />
 <hr />
 <br />
 
