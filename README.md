@@ -13,7 +13,7 @@ An icon pack for the modern designer and developer.
 
 Nilicons is a flexible pack of +200 icons designed to be scalable and look modern, and built upon the principles of simplicity, consistency, and flexibility. The set covers all common needs and many uncommon, and it offers an editable SVG of each icon, together with its React component.
 
-Quick links: [Catalog](https://nil.github.io/nilicons) · [Design](https://nil.github.io/nilicons/guidelines) · [React](#installation) · [Figma]()
+Quick links: [Catalog](https://nil.github.io/nilicons) · [Design](https://nil.github.io/nilicons/guidelines) · [React](#installation) · [Figma](https://www.figma.com/file/84My22ahq47CcqA8b9QEhw/Nilicons?node-id=0%3A1)
 
 <img src="https://user-images.githubusercontent.com/13088397/80711254-5a4cfb00-8af0-11ea-9bd1-e92c1b80741d.png" aria-hidden="true" height="60px" />
 
