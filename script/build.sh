@@ -26,6 +26,11 @@ if [[ $* != *-s* ]]; then
     echo "✅ temp-icons direcotry created"
   fi
 
+  if [ -d "lib" ]; then
+    rm -rf "lib"
+    echo "✅ lib directory removed"
+  fi
+
   npm run build:temp
   echo "✅ Icons copied to a new directory"
 
