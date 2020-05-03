@@ -1,6 +1,6 @@
 ---
 name: Site bug
-about: Report a bug with the Nilicons website
+about: Report a bug with the Towericons website
 title: "[Site bug]"
 labels: site
 assignees: ''

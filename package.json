@@ -1,7 +1,7 @@
 {
-  "name": "nilicons",
+  "name": "towericons",
   "version": "0.1.9",
-  "description": "My personal icon set",
+  "description": "An icon pack for the modern designer and developert",
   "main": "index.js",
   "scripts": {
     "build": "bash script/build.sh",
